@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+aapiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flatmate-app
@@ -11,6 +11,8 @@ spec:
     metadata:
       labels:
         app: flatmate
+      annotations:
+        redeploy: "v1"   # 👈 IMPORTANT (Step 2)
     spec:
       containers:
       - name: flatmate-container
