@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Flatmate</title>
+</head>
+<body>
+
+<h2>Login</h2>
+<button onclick="login()">Login</button>
+
+<h2>Add User Details</h2>
+
+<input id="name" placeholder="Name"><br>
+<input id="mobile" placeholder="Mobile"><br>
+<input id="address" placeholder="Address"><br>
+<input id="email" placeholder="Email"><br>
+<input id="work" placeholder="Profession"><br>
+
+<button onclick="addUser()">Submit</button>
+
+<script>
+function login() {
+    fetch("/login", { method: "POST" })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+}
+
+function addUser() {
+    fetch("/user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            mobile: document.getElementById("mobile").value,
+            address: document.getElementById("address").value,
+            email: document.getElementById("email").value,
+            work: document.getElementById("work").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => alert("User Added"));
+}
+</script>
+
+</body>
+</html>
